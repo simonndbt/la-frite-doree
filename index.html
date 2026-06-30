@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+ <meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <!-- DEMO FICTIVE : commerce invente pour le portfolio. Aucun vrai etablissement. -->
+ <meta name="robots" content="noindex, nofollow">
+ <title>La Frite Dorée | Friterie à Lille depuis 1987</title>
+ <meta name="description" content="La Frite Dorée, friterie à Lille depuis 1987. Pommes de terre fraîches coupées à la main, cuites au gras de bœuf, et sauces maison. Sur place ou à emporter.">
+
+ <link rel="preconnect" href="https://fonts.googleapis.com">
+ <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+ <link href="https://fonts.googleapis.com/css2?family=Karla:wght@300;400;500;600;700&family=Playfair+Display:wght@500;700;800&display=swap" rel="stylesheet">
+
+ <style>
+ :root{
+ --noir:#16110c;
+ --noir2:#211913;
+ --or:#cf8f2e;
+ --or-clair:#e6bd6a;
+ --rouge:#b0451f;
+ --creme:#f5eee1;
+ --creme2:#efe5d3;
+ --gris:#b3a892;
+ --gris-fonce:#83796a;
+ --d-title:'Playfair Display',Georgia,serif;
+ --d-body:'Karla',system-ui,sans-serif;
+ }
+ *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+ html{scroll-behavior:smooth}
+ body{font-family:var(--d-body);background:var(--creme);color:var(--noir);overflow-x:hidden;line-height:1.65}
+ img{max-width:100%;display:block}
+ a{text-decoration:none;color:inherit}
+ ul{list-style:none}
+ section{position:relative}
+
+ .wrap{max-width:1140px;margin:0 auto;padding:0 26px}
+ /* photos unifiees : meme traitement chaud sur toutes */
+ .ph{filter:saturate(1.04) contrast(1.04) brightness(.96) sepia(.1)}
+ .kicker{text-transform:uppercase;letter-spacing:.26em;font-size:.72rem;font-weight:700;color:var(--rouge)}
+ .kicker.gold{color:var(--or)}
+
+ .reveal{opacity:0;transform:translateY(26px);transition:opacity .7s ease,transform .7s ease}
+ .reveal.in{opacity:1;transform:none}
+ .d1{transition-delay:.08s}.d2{transition-delay:.16s}
+
+ .btn{display:inline-flex;align-items:center;gap:9px;font-weight:600;font-size:.94rem;padding:14px 28px;border-radius:2px;cursor:pointer;border:none;transition:transform .2s,background .2s,color .2s}
+ .btn-gold{background:var(--or);color:var(--noir)}
+ .btn-gold:hover{background:var(--or-clair)}
+ .btn-ghost{background:transparent;border:1.5px solid rgba(255,255,255,.45);color:#fff}
+ .btn-ghost:hover{border-color:var(--or);color:var(--or)}
+ .btn-dark{background:var(--noir);color:var(--creme)}
+ .btn-dark:hover{background:var(--rouge)}
+
+ .announce{background:var(--noir);color:var(--creme);font-size:.8rem;text-align:center;padding:9px 20px}
+ .announce strong{color:var(--or)}
+ .announce a{color:var(--or-clair);font-weight:600}
+
+ .nav{position:fixed;top:35px;left:0;right:0;z-index:50;transition:.3s;padding:20px 0}
+ .nav.scrolled{top:0;background:rgba(22,17,12,.97);padding:13px 0;box-shadow:0 4px 24px rgba(0,0,0,.35)}
+ .nav-inner{display:flex;align-items:center;justify-content:space-between}
+ .brand{display:flex;align-items:center;gap:11px}
+ .brand-name{font-family:var(--d-title);font-size:1.5rem;letter-spacing:1.5px;color:#fff}
+ .brand-name b{color:var(--or)}
+ .nav-links{display:flex;align-items:center;gap:32px}
+ .nav-links a{color:rgba(255,255,255,.8);font-size:.85rem;font-weight:500;position:relative;transition:color .2s}
+ .nav-links a:hover{color:#fff}
+ .nav-cta{border:1.5px solid var(--or);color:var(--or)!important;padding:8px 18px;border-radius:2px}
+ .nav-cta:hover{background:var(--or);color:var(--noir)!important}
+ .burger{display:none;flex-direction:column;gap:5px;background:none;border:none;cursor:pointer;padding:6px}
+ .burger span{width:25px;height:2px;background:#fff;transition:.3s}
+ .mobile{display:none;position:fixed;inset:0;z-index:49;background:rgba(22,17,12,.98);flex-direction:column;align-items:center;justify-content:center;gap:24px}
+ .mobile.open{display:flex}
+ .mobile a{color:var(--creme);font-family:var(--d-title);font-size:2rem;letter-spacing:2px}
+
+ /* HERO */
+ .hero{min-height:100vh;display:flex;align-items:flex-end;color:#fff;background:linear-gradient(95deg,rgba(22,17,12,.82) 0%,rgba(22,17,12,.5) 55%,rgba(120,40,20,.28) 100%),url("images/hero.jpg") center/cover no-repeat}
+ .hero-inner{padding:0 0 88px;max-width:780px}
+ .hero .kicker{margin-bottom:18px}
+ .hero h1{font-family:var(--d-title);font-size:clamp(3.6rem,12vw,8.5rem);line-height:.86;letter-spacing:1px}
+ .hero h1 .gold{color:var(--or)}
+ .hero .sub{font-family:var(--d-title);font-size:clamp(1.6rem,4vw,2.6rem);letter-spacing:1px;color:var(--or-clair);margin-top:6px}
+ .hero p{font-size:1.08rem;color:rgba(255,255,255,.84);max-width:48ch;margin:22px 0 32px}
+ .hero-ctas{display:flex;flex-wrap:wrap;gap:13px}
+ .scroll-cue{position:absolute;right:30px;bottom:30px;display:flex;align-items:center;gap:10px;color:rgba(255,255,255,.55);font-size:.7rem;letter-spacing:.2em;text-transform:uppercase}
+ .scroll-cue .line{width:40px;height:1px;background:rgba(255,255,255,.4)}
+ @media(max-width:760px){.scroll-cue{display:none}}
+
+ /* bandeau LED friterie */
+ .marquee{background:var(--rouge);overflow:hidden}
+ .marquee-track{display:flex;white-space:nowrap;animation:slide 28s linear infinite}
+ .marquee-track span{font-family:var(--d-title);font-size:1.35rem;letter-spacing:2px;color:#fff;padding:12px 22px;display:flex;align-items:center;gap:22px;opacity:.95}
+ .marquee-track span::after{content:"";width:6px;height:6px;background:var(--or-clair);border-radius:50%}
+ @keyframes slide{to{transform:translateX(-50%)}}
+
+ /* STORY (decale, image a droite) */
+ .story{padding:96px 0;background:var(--creme)}
+ .story-grid{display:grid;grid-template-columns:1fr 1.1fr;gap:60px;align-items:center}
+ .story-content .kicker{margin-bottom:14px}
+ .story h2{font-family:var(--d-title);font-size:clamp(2.4rem,5.5vw,3.8rem);line-height:.96;margin-bottom:22px}
+ .story h2 .gold{color:var(--rouge)}
+ .story p{color:#4d4234;margin-bottom:15px;font-size:1.04rem}
+ .story .sign{font-family:var(--d-title);font-size:1.5rem;letter-spacing:1px;color:var(--noir);margin-top:8px}
+ .story .sign small{display:block;font-family:var(--d-body);font-size:.78rem;letter-spacing:.04em;color:var(--gris-fonce);font-weight:500}
+ .story-visual{position:relative}
+ .story-visual img{border-radius:3px;height:540px;width:100%;object-fit:cover}
+ .story-visual::after{content:"depuis 1987";position:absolute;left:-14px;top:30px;background:var(--rouge);color:#fff;font-family:var(--d-title);font-size:1.1rem;letter-spacing:2px;padding:8px 16px;transform:rotate(-3deg)}
+ @media(max-width:860px){.story-grid{grid-template-columns:1fr;gap:40px}.story-visual{order:-1}.story-visual img{height:340px}}
+
+ /* petite ligne de faits, sobre */
+ .facts{background:var(--noir);color:var(--creme);padding:26px 0}
+ .facts-row{display:flex;flex-wrap:wrap;gap:14px 40px;align-items:baseline;justify-content:center;font-size:.96rem}
+ .facts-row b{font-family:var(--d-title);font-size:1.5rem;letter-spacing:1px;color:var(--or);margin-right:8px}
+ .facts-row span{color:var(--gris)}
+ .facts-row .dot{color:var(--rouge)}
+
+ /* CARTE */
+ .carte{padding:96px 0;background:var(--creme2)}
+ .carte-top{display:flex;justify-content:space-between;align-items:flex-end;gap:20px;margin-bottom:46px;flex-wrap:wrap}
+ .carte h2{font-family:var(--d-title);font-size:clamp(2.6rem,6vw,4rem);line-height:.95}
+ .carte h2 .gold{color:var(--rouge)}
+ .carte-top p{color:var(--gris-fonce);max-width:34ch;font-size:.96rem}
+ .menu{display:grid;grid-template-columns:1fr 1fr;gap:6px 54px}
+ .item{display:grid;grid-template-columns:1fr auto;align-items:baseline;gap:0 14px;padding:17px 0;border-bottom:1px dotted #cdbfa6}
+ .item .nom{font-weight:700;font-size:1.06rem}
+ .item .tag{font-size:.62rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:#fff;background:var(--rouge);padding:2px 7px;border-radius:2px;margin-left:8px;vertical-align:middle}
+ .item .prix{font-weight:700;color:var(--rouge);white-space:nowrap}
+ .item .desc{grid-column:1/-1;color:var(--gris-fonce);font-size:.88rem;margin-top:3px}
+ .carte .note{color:var(--gris-fonce);font-size:.84rem;margin-top:34px}
+ @media(max-width:760px){.menu{grid-template-columns:1fr;gap:0}}
+
+ /* SAUCES (image a gauche) */
+ .sauces-sec{display:grid;grid-template-columns:1fr 1fr;background:var(--noir);color:var(--creme)}
+ .sauces-img{min-height:460px;background:linear-gradient(rgba(22,17,12,.15),rgba(22,17,12,.15)),url("images/signature.jpg") center/cover no-repeat}
+ .sauces-txt{padding:84px 7%}
+ .sauces-txt h2{font-family:var(--d-title);font-size:clamp(2.2rem,4.5vw,3.4rem);line-height:.96;margin:12px 0 16px}
+ .sauces-txt h2 .gold{color:var(--or)}
+ .sauces-txt p{color:var(--gris);margin-bottom:18px}
+ .sauces-list{display:flex;flex-wrap:wrap;gap:9px}
+ .sauces-list span{border:1px solid rgba(255,255,255,.2);border-radius:50px;padding:8px 15px;font-size:.84rem;color:var(--creme);transition:.2s}
+ .sauces-list span:hover{background:var(--rouge);border-color:var(--rouge)}
+ @media(max-width:860px){.sauces-sec{grid-template-columns:1fr}.sauces-img{min-height:280px}}
+
+ /* GALERIE */
+ .galerie{padding:96px 0;background:var(--creme)}
+ .galerie h2{font-family:var(--d-title);font-size:clamp(2.4rem,5vw,3.4rem);line-height:.96;margin:10px 0 40px}
+ .galerie h2 .gold{color:var(--rouge)}
+ .grid-g{display:grid;grid-template-columns:repeat(4,1fr);grid-auto-rows:200px;gap:12px}
+ .g-cell{overflow:hidden;border-radius:3px}
+ .g-cell img{width:100%;height:100%;object-fit:cover;transition:transform .7s ease}
+ .g-cell:hover img{transform:scale(1.06)}
+ .g-cell.w2{grid-column:span 2}.g-cell.h2{grid-row:span 2}
+ @media(max-width:760px){.grid-g{grid-template-columns:1fr 1fr;grid-auto-rows:150px}.g-cell.w2{grid-column:span 1}.g-cell.h2{grid-row:span 1}}
+
+ /* AVIS */
+ .avis{padding:96px 0;background:var(--creme2)}
+ .avis h2{font-family:var(--d-title);font-size:clamp(2.4rem,5vw,3.4rem);line-height:.96;margin:10px 0 6px}
+ .avis h2 .gold{color:var(--rouge)}
+ .avis .sous{color:var(--gris-fonce);margin-bottom:40px;font-size:.95rem}
+ .avis-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+ .avis-card{background:#fff;border:1px solid #e6dcc8;border-radius:5px;padding:28px}
+ .avis-card .st{color:var(--or);font-size:.8rem;font-weight:700;letter-spacing:.1em}
+ .avis-card .tx{font-size:1.02rem;line-height:1.55;color:#3f362a;margin:14px 0 18px}
+ .avis-card .au{display:flex;align-items:center;gap:11px}
+ .avis-card .av{width:40px;height:40px;border-radius:50%;background:var(--noir);display:flex;align-items:center;justify-content:center;font-weight:700;color:var(--or)}
+ .avis-card .nm{font-weight:600;font-size:.9rem}
+ .avis-card .dt{font-size:.76rem;color:var(--gris-fonce)}
+ @media(max-width:860px){.avis-grid{grid-template-columns:1fr}}
+
+ /* CONTACT */
+ .contact{padding:96px 0;background:var(--creme)}
+ .contact h2{font-family:var(--d-title);font-size:clamp(2.4rem,5vw,3.4rem);line-height:.96;margin:10px 0 40px}
+ .contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:40px}
+ .panel{background:#fff;border:1px solid #e6dcc8;border-radius:5px;padding:38px}
+ .panel h3{font-family:var(--d-title);font-size:1.8rem;letter-spacing:.5px;margin-bottom:20px}
+ .hrs li{display:flex;justify-content:space-between;padding:11px 0;border-bottom:1px solid #f0e8da;font-size:.94rem}
+ .hrs li:last-child{border:none}
+ .hrs .j{font-weight:600}
+ .hrs .h{color:var(--gris-fonce)}
+ .hrs li.today{background:#faf0d8;margin:0 -12px;padding:11px 12px;border-radius:4px}
+ .hrs .closed{color:var(--rouge);font-weight:600}
+ .info-row{padding:13px 0;border-bottom:1px solid #f0e8da}
+ .info-row:last-of-type{border:none}
+ .info-row .k{font-size:.72rem;text-transform:uppercase;letter-spacing:.09em;color:var(--gris-fonce);font-weight:700}
+ .info-row .v{font-weight:600}
+ .cta-col{display:flex;flex-direction:column;gap:11px;margin-top:22px}
+ .map{margin-top:40px;border-radius:5px;overflow:hidden}
+ .map iframe{display:block;width:100%;height:360px;border:none;filter:grayscale(.25) sepia(.1)}
+ @media(max-width:860px){.contact-grid{grid-template-columns:1fr}}
+
+ footer{background:var(--noir);color:var(--gris);padding:58px 0 26px}
+ .f-grid{display:grid;grid-template-columns:2fr 1fr 1fr;gap:40px;margin-bottom:40px}
+ .f-grid p{font-size:.89rem;line-height:1.7;margin-top:12px;max-width:36ch}
+ .f-grid h4{color:var(--or);font-size:.76rem;text-transform:uppercase;letter-spacing:.12em;margin-bottom:14px}
+ .f-grid li{margin-bottom:9px;font-size:.89rem}
+ .f-grid a:hover{color:var(--or-clair)}
+ .f-bottom{border-top:1px solid rgba(255,255,255,.1);padding-top:22px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;font-size:.78rem;color:var(--gris-fonce)}
+ @media(max-width:760px){.f-grid{grid-template-columns:1fr;gap:30px}}
+
+ .ardoise{margin-top:40px;background:#1d271f;border:7px solid #34251a;border-radius:5px;padding:32px 30px;color:#f1e8d2;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:18px;box-shadow:inset 0 0 70px rgba(0,0,0,.45)}
+ .ardoise .lab{font-family:var(--d-title);letter-spacing:2px;color:var(--or-clair);font-size:1.05rem;margin-bottom:6px}
+ .ardoise .plat{font-family:var(--d-title);font-size:2rem;letter-spacing:1px;line-height:1}
+ .ardoise .plat small{display:block;font-family:var(--d-body);font-size:.86rem;letter-spacing:0;color:#cabd9f;font-weight:500;margin-top:8px;max-width:50ch;line-height:1.5}
+ .ardoise .prix-a{font-family:var(--d-title);font-size:2.2rem;color:var(--or)}
+ #top{position:fixed;right:24px;bottom:24px;width:46px;height:46px;border-radius:50%;background:var(--or);color:var(--noir);border:none;cursor:pointer;font-size:1.1rem;display:flex;align-items:center;justify-content:center;opacity:0;pointer-events:none;transition:.3s;z-index:40}
+ #top.show{opacity:1;pointer-events:all}
+
+ /* --- UI Pro Max : finitions design + accessibilite --- */
+ .brand-name,.hero h1,.hero .sub,.marquee-track span,.story h2,.story .sign,.facts-row b,.carte h2,.sauces-txt h2,.galerie h2,.avis h2,.contact h2,.panel h3,.ardoise .lab,.ardoise .plat,.ardoise .prix-a{font-weight:700;letter-spacing:0;line-height:1.05}
+ .hero h1{font-weight:800}
+ a:focus-visible,button:focus-visible{outline:2px solid var(--or);outline-offset:3px;border-radius:2px}
+ body::before{content:"";position:fixed;inset:0;pointer-events:none;z-index:1;opacity:.05;mix-blend-mode:multiply;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='150' height='150'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+ @media (prefers-reduced-motion: reduce){*{animation:none!important;transition:none!important;scroll-behavior:auto!important}.reveal{opacity:1!important;transform:none!important}}
+
+ @media(max-width:760px){.nav-links{display:none}.burger{display:flex}.nav{top:32px}}
+ </style>
+</head>
+<body>
+
+ <div class="announce">
+ On épluche les patates le matin, on ferme quand y'en a plus &nbsp;<strong>·</strong>&nbsp; <a href="tel:+33320551890">03 20 55 18 90</a>
+ </div>
+
+ <nav class="nav" id="nav">
+ <div class="wrap nav-inner">
+ <a href="#accueil" class="brand"><span class="brand-name">La Frite <b>Dorée</b></span></a>
+ <div class="nav-links">
+ <a href="#histoire">La maison</a>
+ <a href="#carte">La carte</a>
+ <a href="#galerie">Photos</a>
+ <a href="#avis">Avis</a>
+ <a href="#contact" class="nav-cta">Nous trouver</a>
+ </div>
+ <button class="burger" id="burger" aria-label="Menu"><span></span><span></span><span></span></button>
+ </div>
+ </nav>
+ <div class="mobile" id="mobile">
+ <a href="#histoire" onclick="closeM()">La maison</a>
+ <a href="#carte" onclick="closeM()">La carte</a>
+ <a href="#galerie" onclick="closeM()">Photos</a>
+ <a href="#avis" onclick="closeM()">Avis</a>
+ <a href="#contact" onclick="closeM()">Nous trouver</a>
+ </div>
+
+ <!-- HERO -->
+ <header class="hero" id="accueil">
+ <div class="wrap hero-inner">
+ <p class="kicker gold">Friterie à Lille, quartier de Fives</p>
+ <h1>La <span class="gold">frite</span> maison<span class="sub">au gras de bœuf, depuis 1987</span></h1>
+ <p>Des patates fraîches, épluchées et coupées à la main le matin, cuites deux fois. Rien de surgelé, rien de compliqué. Juste une bonne frite, et des sauces qu'on prépare nous.</p>
+ <div class="hero-ctas">
+ <a href="#carte" class="btn btn-gold">La carte</a>
+ <a href="tel:+33320551890" class="btn btn-ghost">03 20 55 18 90</a>
+ </div>
+ </div>
+ <div class="scroll-cue"><span>Plus bas</span><span class="line"></span></div>
+ </header>
+
+ <div class="marquee">
+ <div class="marquee-track">
+ <span>Frites fraîches</span><span>Gras de bœuf</span><span>Sauces maison</span><span>Fricadelle</span><span>Américain</span><span>Sur place ou à emporter</span>
+ <span>Frites fraîches</span><span>Gras de bœuf</span><span>Sauces maison</span><span>Fricadelle</span><span>Américain</span><span>Sur place ou à emporter</span>
+ </div>
+ </div>
+
+ <!-- STORY -->
+ <section class="story" id="histoire">
+ <div class="wrap story-grid">
+ <div class="story-content reveal">
+ <p class="kicker">La maison</p>
+ <h2>La même <span class="gold">friteuse</span><br>depuis 1987</h2>
+ <p>En 1987, Lucienne a posé sa baraque au coin de la rue. Aujourd'hui c'est nous qui sommes derrière la friteuse, mais on n'a touché à rien de sa méthode.</p>
+ <p>Les pommes de terre, on les épluche et on les coupe ici, tous les matins. On les cuit deux fois, dans le gras de bœuf, comme ça se faisait avant. Ça prend plus de temps qu'une frite surgelée, on sait. Mais bon, une frite, ça se rate pas.</p>
+ <p>Le reste, c'est pareil : les sauces, l'américain, tout est fait sur place. On n'a jamais su faire autrement.</p>
+ <p class="sign">Mimi<small>derrière le comptoir depuis 2009</small></p>
+ </div>
+ <div class="story-visual reveal d1">
+ <img class="ph" src="images/about.jpg" alt="La friterie La Frite Dorée">
+ </div>
+ </div>
+ </section>
+
+ <!-- FACTS -->
+ <div class="facts">
+ <div class="wrap facts-row">
+ <span><b>1987</b> au même coin de rue</span>
+ <span class="dot">·</span>
+ <span><b>4,9</b> sur Google</span>
+ <span class="dot">·</span>
+ <span><b>9</b> sauces faites maison</span>
+ </div>
+ </div>
+
+ <!-- CARTE -->
+ <section class="carte" id="carte">
+ <div class="wrap">
+ <div class="carte-top reveal">
+ <div>
+ <p class="kicker">La carte</p>
+ <h2>Ce qu'on <span class="gold">sert</span></h2>
+ </div>
+ <p>Tout est fait à la commande, alors un peu de patience aux heures de pointe.</p>
+ </div>
+ <div class="menu">
+ <div class="item reveal">
+ <span class="nom">La frite maison <span class="tag">la base</span></span>
+ <span class="prix">3,20 €</span>
+ <span class="desc">Coupée à la main, cuite au gras de bœuf. Petit, moyen ou grand cornet.</span>
+ </div>
+ <div class="item reveal d1">
+ <span class="nom">Frite + sauce maison</span>
+ <span class="prix">4,10 €</span>
+ <span class="desc">La frite avec la sauce de votre choix.</span>
+ </div>
+ <div class="item reveal">
+ <span class="nom">Fricadelle</span>
+ <span class="prix">2,20 €</span>
+ <span class="desc">La vraie, dorée comme il faut.</span>
+ </div>
+ <div class="item reveal d1">
+ <span class="nom">Américain <span class="tag">le plus pris</span></span>
+ <span class="prix">6,90 €</span>
+ <span class="desc">Pain, viande, frites dedans, sauce américaine maison. Ça cale.</span>
+ </div>
+ <div class="item reveal">
+ <span class="nom">Burger au Maroilles</span>
+ <span class="prix">8,50 €</span>
+ <span class="desc">Steak frais, Maroilles fondu, oignons. Pour ceux qui aiment ça fort.</span>
+ </div>
+ <div class="item reveal d1">
+ <span class="nom">Croquettes crevettes</span>
+ <span class="prix">3,80 €</span>
+ <span class="desc">Croustillantes, par deux.</span>
+ </div>
+ <div class="item reveal">
+ <span class="nom">Le menu du midi</span>
+ <span class="prix">10,90 €</span>
+ <span class="desc">Américain ou burger, grande frite, une boisson.</span>
+ </div>
+ <div class="item reveal d1">
+ <span class="nom">Boissons</span>
+ <span class="prix">1,80 €</span>
+ <span class="desc">Canettes, eau, et quelques bières du coin.</span>
+ </div>
+ </div>
+ <div class="ardoise reveal">
+ <div>
+ <div class="lab">L'ardoise du moment</div>
+ <div class="plat">L'assiette du chantier<small>Grande frite, fricadelle, boulette, cervelas et une bonne louche de sauce. Pour les grosses faims, on prévient.</small></div>
+ </div>
+ <div class="prix-a">8,90 €</div>
+ </div>
+ <p class="note">Les prix peuvent bouger un peu selon les patates et la saison. Demandez nous au comptoir.</p>
+ </div>
+ </section>
+
+ <!-- SAUCES -->
+ <section class="sauces-sec">
+ <div class="sauces-img"></div>
+ <div class="sauces-txt">
+ <p class="kicker gold">Le truc en plus</p>
+ <h2>Les <span class="gold">sauces</span>, c'est nous qui les faisons</h2>
+ <p>Pas de pot industriel sous le comptoir. On les prépare, et il y en a pour tous les goûts.</p>
+ <div class="sauces-list">
+ <span>Andalouse</span><span>Samouraï</span><span>Mayo maison</span><span>Américaine</span><span>Curry</span><span>Poivre</span><span>Barbecue</span><span>Tartare</span><span>Algérienne</span>
+ </div>
+ </div>
+ </section>
+
+ <!-- GALERIE -->
+ <section class="galerie" id="galerie">
+ <div class="wrap">
+ <p class="kicker reveal">En vrai</p>
+ <h2 class="reveal">À quoi ça <span class="gold">ressemble</span></h2>
+ <div class="grid-g">
+ <div class="g-cell w2 h2 reveal"><img class="ph" src="images/frites.jpg" alt="Frites maison"></div>
+ <div class="g-cell reveal d1"><img class="ph" src="images/americain.jpg" alt="Américain"></div>
+ <div class="g-cell reveal d2"><img class="ph" src="images/sauce.jpg" alt="Sauces maison"></div>
+ <div class="g-cell reveal"><img class="ph" src="images/cornet.jpg" alt="Cornet de frites"></div>
+ <div class="g-cell w2 reveal d1"><img class="ph" src="images/burger.jpg" alt="Burger au Maroilles"></div>
+ </div>
+ <p class="note" style="color:var(--gris-fonce);font-size:.82rem;margin-top:16px">Photos d'illustration, à remplacer par les vraies photos de l'établissement.</p>
+ </div>
+ </section>
+
+ <!-- AVIS -->
+ <section class="avis" id="avis">
+ <div class="wrap">
+ <p class="kicker reveal">Les avis</p>
+ <h2 class="reveal">Ce qu'en disent les <span class="gold">habitués</span></h2>
+ <p class="sous reveal">Quelques mots laissés sur Google.</p>
+ <div class="avis-grid">
+ <div class="avis-card reveal">
+ <div class="st">5 sur 5</div>
+ <p class="tx">"Franchement les meilleures frites du coin. Bien dorées, jamais molles. Et Mimi est adorable. J'y passe tous les vendredis."</p>
+ <div class="au"><div class="av">C</div><div><div class="nm">Camille D.</div><div class="dt">il y a 2 semaines</div></div></div>
+ </div>
+ <div class="avis-card reveal d1">
+ <div class="st">5 sur 5</div>
+ <p class="tx">"L'américain est énorme et les sauces maison ça change tout. Seul truc, venez pas trop tard le vendredi soir, ça fait la queue."</p>
+ <div class="au"><div class="av">R</div><div><div class="nm">Rachid B.</div><div class="dt">il y a 1 mois</div></div></div>
+ </div>
+ <div class="avis-card reveal d2">
+ <div class="st">4 sur 5</div>
+ <p class="tx">"Une bonne vieille friterie comme on en trouve plus trop. Rien de chichi, que du bon. La frite au gras de bœuf, y'a que ça de vrai."</p>
+ <div class="au"><div class="av">M</div><div><div class="nm">Margaux L.</div><div class="dt">il y a 3 mois</div></div></div>
+ </div>
+ </div>
+ </div>
+ </section>
+
+ <!-- CONTACT -->
+ <section class="contact" id="contact">
+ <div class="wrap">
+ <p class="kicker reveal">Nous trouver</p>
+ <h2 class="reveal">Passez nous <span class="gold">voir</span></h2>
+ <div class="contact-grid">
+ <div class="panel reveal">
+ <h3>Horaires</h3>
+ <ul class="hrs">
+ <li><span class="j">Lundi</span><span class="h closed">Fermé</span></li>
+ <li><span class="j">Mardi</span><span class="h">11h45 à 14h · 18h à 21h30</span></li>
+ <li><span class="j">Mercredi</span><span class="h">11h45 à 14h · 18h à 21h30</span></li>
+ <li><span class="j">Jeudi</span><span class="h">11h45 à 14h · 18h à 21h30</span></li>
+ <li><span class="j">Vendredi</span><span class="h">11h45 à 14h · 18h à 22h30</span></li>
+ <li><span class="j">Samedi</span><span class="h">11h45 à 14h · 18h à 22h30</span></li>
+ <li><span class="j">Dimanche</span><span class="h">18h à 21h30</span></li>
+ </ul>
+ <p style="margin-top:14px;font-size:.82rem;color:var(--gris-fonce)">Dernière commande un quart d'heure avant la fermeture. Fermé la deuxième quinzaine d'août, on part voir la mer.</p>
+ </div>
+ <div class="panel reveal d1">
+ <h3>L'adresse</h3>
+ <div class="info-row"><div class="k">Où</div><div class="v">213 rue d'Arras, 59000 Lille</div></div>
+ <div class="info-row"><div class="k">Téléphone</div><div class="v">03 20 55 18 90</div></div>
+ <div class="info-row"><div class="k">Pour venir</div><div class="v">Métro Porte de Valenciennes, à 5 min à pied</div></div>
+ <div class="info-row"><div class="k">Paiement</div><div class="v">CB à partir de 8 €, espèces, tickets resto. Pas de chèque.</div></div>
+ <div class="info-row"><div class="k">À emporter</div><div class="v">Appelez avant de passer, c'est prêt en 10 min</div></div>
+ <div class="info-row"><div class="k">Bon à savoir</div><div class="v">Frites cuites au gras de bœuf, ce n'est donc pas végétarien. Parking pas évident, venez à pied si vous pouvez.</div></div>
+ <div class="cta-col">
+ <a href="tel:+33320551890" class="btn btn-dark" style="justify-content:center">Appeler la friterie</a>
+ <a href="https://www.google.com/maps?q=rue+d'Arras+Lille" target="_blank" rel="noopener" class="btn btn-gold" style="justify-content:center">Voir sur la carte</a>
+ <a href="https://www.facebook.com/" target="_blank" rel="noopener" class="btn" style="justify-content:center;background:#1877f2;color:#fff">Le plat du jour sur Facebook</a>
+ </div>
+ </div>
+ </div>
+ <div class="map reveal">
+ <iframe src="https://www.google.com/maps?q=rue+d'Arras+59000+Lille&output=embed" loading="lazy" title="Localisation La Frite Dorée à Lille"></iframe>
+ </div>
+ </div>
+ </section>
+
+ <footer>
+ <div class="wrap">
+ <div class="f-grid">
+ <div>
+ <a href="#accueil" class="brand"><span class="brand-name">La Frite <b>Dorée</b></span></a>
+ <p>La friterie du quartier de Fives à Lille depuis 1987. Frites fraîches au gras de bœuf, sauces maison, et toujours le même accueil.</p>
+ </div>
+ <div>
+ <h4>Le site</h4>
+ <ul>
+ <li><a href="#histoire">La maison</a></li>
+ <li><a href="#carte">La carte</a></li>
+ <li><a href="#galerie">Photos</a></li>
+ <li><a href="#avis">Avis</a></li>
+ </ul>
+ </div>
+ <div>
+ <h4>Nous joindre</h4>
+ <ul>
+ <li><a href="tel:+33320551890">03 20 55 18 90</a></li>
+ <li>213 rue d'Arras</li>
+ <li>59000 Lille</li>
+ <li><a href="https://www.facebook.com/" target="_blank" rel="noopener">Facebook</a></li>
+ </ul>
+ </div>
+ </div>
+ <div class="f-bottom">
+ <span>© 2026 La Frite Dorée, Lille.</span>
+ <span>Fermé le lundi, comme depuis toujours.</span>
+ </div>
+ </div>
+ </footer>
+
+ <button id="top" aria-label="Haut de page">↑</button>
+
+ <script>
+ const nav=document.getElementById('nav'),topBtn=document.getElementById('top');
+ window.addEventListener('scroll',()=>{const y=window.scrollY;nav.classList.toggle('scrolled',y>40);topBtn.classList.toggle('show',y>600)});
+ topBtn.onclick=()=>window.scrollTo({top:0,behavior:'smooth'});
+ const mobile=document.getElementById('mobile');
+ document.getElementById('burger').onclick=()=>mobile.classList.toggle('open');
+ function closeM(){mobile.classList.remove('open')}
+ const io=new IntersectionObserver((es)=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}})},{threshold:.16});
+ document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+ const days=['Dimanche','Lundi','Mardi','Mercredi','Jeudi','Vendredi','Samedi'];
+ const today=days[new Date().getDay()];
+ document.querySelectorAll('.hrs .j').forEach(el=>{if(el.textContent.trim()===today)el.closest('li').classList.add('today')});
+ </script>
+</body>
+</html>
